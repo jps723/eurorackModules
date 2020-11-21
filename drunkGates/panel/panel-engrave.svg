@@ -1,0 +1,39 @@
+<svg id="UI_Design" data-name="UI/Design" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.2 360.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 0.28px;
+      }
+    </style>
+  </defs>
+  <title>panel-engrave</title>
+  <ellipse class="cls-1" cx="47.17" cy="68.6" rx="9.87" ry="9.92"/>
+  <ellipse class="cls-1" cx="47.17" cy="130.48" rx="8.46" ry="8.5"/>
+  <ellipse class="cls-1" cx="86.69" cy="65.83" rx="8.46" ry="8.5"/>
+  <ellipse class="cls-1" cx="126.21" cy="130.48" rx="8.46" ry="8.5"/>
+  <ellipse class="cls-1" cx="47.17" cy="177.59" rx="8.46" ry="8.5"/>
+  <ellipse class="cls-1" cx="126.21" cy="177.59" rx="8.46" ry="8.5"/>
+  <ellipse class="cls-1" cx="126.21" cy="68.6" rx="9.92" ry="9.97"/>
+  <ellipse class="cls-1" cx="76.1" cy="130" rx="4.61" ry="4.63"/>
+  <ellipse class="cls-1" cx="155.14" cy="57.95" rx="4.61" ry="4.63"/>
+  <ellipse class="cls-1" cx="76.1" cy="177.1" rx="4.61" ry="4.63"/>
+  <ellipse class="cls-1" cx="98.16" cy="177.1" rx="4.61" ry="4.63"/>
+  <ellipse class="cls-1" cx="98.16" cy="130.1" rx="4.61" ry="4.63"/>
+  <circle class="cls-1" cx="5.1" cy="5.1" r="4.96"/>
+  <circle class="cls-1" cx="168.1" cy="5.1" r="4.96"/>
+  <circle class="cls-1" cx="5.1" cy="355.1" r="4.96"/>
+  <circle class="cls-1" cx="168.1" cy="355.1" r="4.96"/>
+  <rect x="29.98" y="218.98" width="21" height="21"/>
+  <rect x="91.98" y="218.98" width="21" height="21"/>
+  <rect x="122.98" y="218.98" width="21" height="21"/>
+  <rect x="29.98" y="246.98" width="52" height="21"/>
+  <rect x="122.98" y="246.98" width="21" height="21"/>
+  <rect x="60.98" y="274.98" width="21" height="21"/>
+  <rect x="122.98" y="274.98" width="21" height="21"/>
+  <rect x="29.98" y="302.98" width="21" height="21"/>
+  <rect x="60.98" y="302.98" width="21" height="21"/>
+  <rect x="91.98" y="274.98" width="21" height="49"/>
+</svg>
