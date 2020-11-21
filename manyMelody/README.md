@@ -1,16 +1,10 @@
-# Feather Synth Build Notes 9/4/20
+# manyMelody Synth
 
-![The Feather Synth sits on top of a table next to a guitar pedal.  A hand is adjusting a knob on the pedal](https://github.com/jps723/featherSynth/blob/master/images/fullShot.png)
+# **This is currently incomplete and I'll be updating shortly.** 
 
-A dual-oscillator polyphonic synthesizer project in collaboration with [Bantam Tools](https://www.bantamtools.com/).  The [project build](https://www.hackster.io/news/create-a-synth-and-sequencer-using-bantam-tools-desktop-cnc-milling-machine-83a0fdb942a3) guide is available on Hackster.
+This is a eurorack form of the [Feather Synth](https://github.com/jps723/featherSynth/), moving over to a Teensy 3.6. 
 
 **Design Notes:**
-
-The hardware component of this project is centered around the Adafruit Feather M4 Express.  This board has two 12bit DAC pins allowing for stereo audio synthesis, however this project does not use any stereo effects and delivers a mono signal to a 3.5mm mono audio jack.  
-
-The hardware design has 5 inputs in the form of 4 potentiometers and a tactile button.  There are exposed female headers for an Adafruit Feather M4 Express.  The board will only fit in one direction, with the microUSB port facing to the left.  
-
-If you look at the [pinout](https://learn.adafruit.com/adafruit-feather-m4-express-atsamd51/pinouts) of the M4 Express, you’ll see that we are using analog pin A0 as our DAC/audio output, and A2-A5 as our analog inputs.  Our button connects to digital pin 5.
 
 The base software for the device uses these inputs to control an auto-advancing sequence of notes.  The knobs control the root note, the scale (it comes pre-programmed with the 7 diatonic modes), the probability that the note will play, and the time delay between notes/tempo.  Pressing the button will cycle through different waveforms/oscillator types.
 
@@ -47,17 +41,16 @@ The nested for() loop is used to populate the rootScaled array.  This determines
 
 The frequency is calculated using a formula that stems from midi note values which are a standard form of notation for relating to frequency.
 
-The frequency cutoff is currently assigned a 50% chance of being 7000 hz, or 2000 hz.  Experiment with these numbers.
+The frequency cutoff is currently assigned a 50% chance of being 7000 hz, or 2000 hz. Experiment with these numbers.
 
 The probabilityOfPlaying variable is compared to a random value between 0 and 100.  Since probabilityOfPlaying is also a value between 0 and 100, this is treated as a percentage.  You can experiment with these values.
 
-playOsc1() and playOsc2() functions take one argument (frequency) which is calculated via the explanation above.  These functions also contain the methods for dictating the ADSR envelope values which are hardcoded and can be adjusted and should be experimented with.  The filter frequency cutoff and delayTime are also embedded in these functions, with delayTime being used to set the time between notes (our tempo).
+playOsc1() and playOsc2() functions take one argument (frequency) which is calculated via the explanation above.  These functions also contain the methods for dictating the ADSR envelope values which are hardcoded and can be adjusted and should be experimented with. The filter frequency cutoff and delayTime are also embedded in these functions, with delayTime being used to set the time between notes (our tempo).
 
 The buttonHandler function counts the button presses and uses that count to cycle through the 7 different oscillator combinations in the switch statement.
 
 
-
-scales.h
+**scales.h**
 scales.h is a reference file where we have all of our different scales stored.  The base code has 7 scales (each of the diatonic modes) spread out across two octaves, with the root note at each octave playing at a 3:1 ratio to everything else.  This results in an 18 note array (an array with 18 indices), which are all a part of another array that contains each of these arrays (a total of 7).  If you were to add an 8th scale with 18 notes, then the scales[][] array should be initialized as scales[8][18].  This would also need to be changed in the .ino sketch in the rootScaled[][] array.  
 
 Currently, if the knob is turned all the way to the left, the Ionian (major) Scale is selected.  As the knob is turned to the right, each scale from the array is played in the order that they are presented in the scales.h file.
@@ -84,14 +77,10 @@ It’s easiest to solder in this order:
 
 Test
 
-First follow [this guide](https://learn.adafruit.com/adafruit-feather-m4-express-atsamd51) for getting acquainted with the board and setting up your arduino IDE to use it. For the SAMD Board Support (Adafruit version), version 1.5.14 is verified to work.  Version 1.6+ has introduced a problem that will break the code without generating any errors.
-
-Additionally, you will need to install the Adafruit fork of the PJRC Audio Library via the IDE.  
-
-![](https://i.imgur.com/D8f4R7t.png)
-
+You will need to install the PJRC Audio Library via the IDE.  
 
 And also the following libraries:
+**CHECK THIS**
 
 ```
 Adafruit_SPIFlash
@@ -101,4 +90,4 @@ SDFat-Adafruit Fork
 
 Once all of the dependencies have been installed, and you’ve uploaded a trial sketch, upload the code that you’ve downloaded from the repository and have fun!  
 
-![A close up photo of a hand plugging in an audio cable into the 3.5mm audio jack on the Feather Synth](https://github.com/jps723/featherSynth/blob/master/images/closeup.png)
+

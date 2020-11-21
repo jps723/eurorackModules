@@ -2899,6 +2899,7 @@ LED</description>
 <part name="POWER_INDICATOR" library="SparkFun-LED" deviceset="LED" device="5MM" package3d_urn="urn:adsk.eagle:package:39353/1"/>
 <part name="GND1" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="VCC" device="" value="3.3V"/>
+<part name="R1" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k"/>
 </parts>
 <sheets>
 <sheet>
@@ -2931,10 +2932,11 @@ LED</description>
 <instance part="SUPPLY9" gate="G$1" x="81.28" y="27.94" rot="R180"/>
 <instance part="SUPPLY10" gate="G$1" x="81.28" y="10.16" rot="R180"/>
 <instance part="SUPPLY11" gate="G$1" x="81.28" y="-7.62" rot="R180"/>
-<instance part="R-OUT1" gate="G$1" x="93.98" y="-33.02" rot="MR0"/>
-<instance part="POWER_INDICATOR" gate="G$1" x="213.36" y="96.52" rot="R90"/>
-<instance part="GND1" gate="1" x="223.52" y="88.9"/>
+<instance part="R-OUT1" gate="G$1" x="93.98" y="-20.32" rot="MR0"/>
+<instance part="POWER_INDICATOR" gate="G$1" x="226.06" y="96.52" rot="R90"/>
+<instance part="GND1" gate="1" x="236.22" y="73.66"/>
 <instance part="SUPPLY1" gate="G$1" x="198.12" y="58.42" rot="R180"/>
+<instance part="R1" gate="G$1" x="205.74" y="88.9" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -3007,8 +3009,13 @@ LED</description>
 <segment>
 <pinref part="POWER_INDICATOR" gate="G$1" pin="C"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="218.44" y1="96.52" x2="223.52" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="223.52" y1="96.52" x2="223.52" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="96.52" x2="236.22" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="96.52" x2="236.22" y2="81.28" width="0.1524" layer="91"/>
+<pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="236.22" y1="81.28" x2="236.22" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="83.82" x2="205.74" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="81.28" x2="236.22" y2="81.28" width="0.1524" layer="91"/>
+<junction x="236.22" y="81.28"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -3064,8 +3071,12 @@ LED</description>
 <pinref part="U$1" gate="G$1" pin="VIN"/>
 <wire x1="198.12" y1="63.5" x2="190.5" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="POWER_INDICATOR" gate="G$1" pin="A"/>
-<wire x1="198.12" y1="96.52" x2="210.82" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="96.52" x2="205.74" y2="96.52" width="0.1524" layer="91"/>
 <junction x="198.12" y="96.52"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="205.74" y1="96.52" x2="223.52" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="93.98" x2="205.74" y2="96.52" width="0.1524" layer="91"/>
+<junction x="205.74" y="96.52"/>
 </segment>
 </net>
 <net name="N$9" class="0">
