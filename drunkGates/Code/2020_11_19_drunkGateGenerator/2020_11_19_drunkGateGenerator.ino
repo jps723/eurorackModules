@@ -1,6 +1,11 @@
-// read the photocell for the 'tap tempo' using CV.
+/* This is a quad gate generator that uses swing and clock rotation 
+ *  to generate 
+ */
+
+//photocell pin is a 
 int photocellPin = A2;
 int cvReading;
+
 int pot1Reading;
 int pot2Reading;
 
@@ -8,6 +13,8 @@ int ledPin0 = 2;
 int ledPin1 = 3;
 int ledPin2 = 4;
 int ledPin3 = 5;
+
+int delayIntervals[] = {8000, 4000, 2000, 500};
 
 int swingAmount = 0;
 
@@ -42,21 +49,32 @@ void loop() {
   pot2Reading = map(analogRead(A1), 1023, 0, 1, 15);
 
   cvReading = map(analogRead(A2), 0, 1023, 0, 1000);
+  Serial.println(cvReading);
 
-  interval0 = 2000 / pot2Reading;
-  interval1 = 1500 / pot2Reading;
-  interval2 = 1250 / pot2Reading;
-  interval3 = 1125 / pot2Reading;
+  if (cvReading <= 250) {
+    interval0 = 6000 / pot2Reading;
+    interval1 = 12000 / pot2Reading;
+    interval2 = 3000 / pot2Reading;
+    interval3 = 1000 / pot2Reading;
 
-
-  if (cvReading >= 300) {
-    swingAmount = random(pot1Reading) + cvReading;
+  } else if (cvReading >= 251 && cvReading <= 750) {
+    interval0 = 1000 / pot2Reading;
+    interval1 = 6000 / pot2Reading;
+    interval2 = 12000 / pot2Reading;
+    interval3 = 3000 / pot2Reading;
+  } else if (cvReading >= 751 && cvReading <= 1000) {
+    interval0 = 3000 / pot2Reading;
+    interval1 = 1000 / pot2Reading;
+    interval2 = 6000 / pot2Reading;
+    interval3 = 12000 / pot2Reading;
   } else {
-    swingAmount = random(pot1Reading) + 50;
+    interval0 = 12000 / pot2Reading;
+    interval1 = 3000 / pot2Reading;
+    interval2 = 1000 / pot2Reading;
+    interval3 = 6000 / pot2Reading;
   }
 
-  //int randomAmount = random(99);
-  Serial.println(pot2Reading);
+  // Serial.println(pot2Reading);
 
   if (currentMillis - previousMillis0 + swingAmount > interval0) {
     previousMillis0 = currentMillis;

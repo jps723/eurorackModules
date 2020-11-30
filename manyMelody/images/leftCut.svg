@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.67 367.09">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: red;
+        stroke-miterlimit: 10;
+        stroke-width: 2.83px;
+      }
+    </style>
+  </defs>
+  <title>leftCut</title>
+  <g id="leftSide">
+    <rect class="cls-1" x="1.42" y="1.42" width="2.83" height="364.25"/>
+  </g>
+</svg>

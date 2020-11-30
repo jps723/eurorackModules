@@ -2,14 +2,19 @@
 
 # **This is currently incomplete and I'll be updating shortly.** 
 
-This is a eurorack form of the [Feather Synth](https://github.com/jps723/featherSynth/), moving over to a Teensy 3.6. 
+## To do: 
+1) Write code for CV Input. 
+2) Clean up synth defs
+3) Adjust min/max on all parameters. 
+
+This is a eurorack version of the [Feather Synth](https://github.com/jps723/featherSynth/), moving over to a Teensy 3.6. 
 
 **Design Notes:**
 
-The base software for the device uses these inputs to control an auto-advancing sequence of notes.  The knobs control the root note, the scale (it comes pre-programmed with the 7 diatonic modes), the probability that the note will play, and the time delay between notes/tempo.  Pressing the button will cycle through different waveforms/oscillator types.
+The base software for this module uses these inputs to control an auto-advancing sequence of notes.  The knobs control the root note, the scale, the probability that the note will play, and the tempo.  Pressing the button cycles through different waveforms/oscillator types.
 
 **Synthesizer Design**
-The synth is a polyphonic dual-oscillator synthesizer, each with independent bi-quad filters and envelopes.  The envelope settings are static while the filters are set to Low Pass Filters with the frequency cutoff randomly changing between two static values based on probability (math within the software -- this is unrelated to the probability knob).   
+The synth is a dual-oscillator synthesizer, each with independent bi-quad filters and envelopes.  The envelope settings are static while the filters are set to Low Pass Filters with the frequency cutoff randomly changing between two static values based on probability (math within the software -- this is unrelated to the probability knob).   
 
 **Controls**
 Root Note (Tonic)
@@ -88,6 +93,6 @@ Adafruit_Zero_I2S_Library
 SDFat-Adafruit Fork
 ```
 
-Once all of the dependencies have been installed, and you’ve uploaded a trial sketch, upload the code that you’ve downloaded from the repository and have fun!  
+Once all of the dependencies have been installed, and you’ve uploaded a trial sketch, upload the code that you’ve downloaded from the repository.  
 
 
