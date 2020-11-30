@@ -2,7 +2,7 @@
 A melody generator for Teensy3.6 and eurorack. 
 
 Choose root note,scale/tempo/probability of playing/waveform 
-combination.  
+combination.  CV input for cycling through the instruments.
 
 */
  
@@ -60,6 +60,11 @@ int buttonState = 0;
 int lastButtonState = 0;
 float frequency;
 
+
+//for cv handling
+bool cvState = 0;
+bool lastCvState = 0;
+
 void setup() {
   //Set default audio memory
   AudioMemory(10);
@@ -78,13 +83,15 @@ void setup() {
 void loop() {
   //A function for button handling to change the instrument
   buttonHandler();
+  cvHandler();
   //read our input sensors and store them in variables
   int bpmReading = analogRead(A0);
   int rootReading = analogRead(A1);
   int scaleReading = analogRead(A2);
   int probabilityReading = analogRead(A3);
-  
 
+  //int cvInputReading = analogRead(A14); 
+  
   //result is the BPM we want in 4:4 (quarter notes)
   int masterTempo = map(bpmReading, 0, 1023, 60, 800);
 
@@ -225,6 +232,62 @@ void buttonHandler() {
   if (buttonPushCounter > 6) {
     buttonPushCounter = 0;
   }
+}
+
+void cvHandler(){
+  // read the pushbutton input pin:
+int cvReadingValue = analogRead(A14);
+  if(cvReadingValue > 350){
+    cvState = true; 
+  }else{
+    cvState = false;
+  }
+  if (cvState != lastCvState) {
+    // if the state has changed, increment the counter
+    if (cvState == true) {
+      // if the current state is HIGH then the button went from off to on:
+      buttonPushCounter++;
+    } else {
+      //if no CV, don't do anything
+    }
+    delay(60);
+  }
+  lastCvState = cvState;
+
+  switch (buttonPushCounter) {
+    case 0:
+      waveform1.begin(WAVEFORM_SINE);
+      waveform2.begin(WAVEFORM_SINE);
+      break;
+    case 1:
+      waveform1.begin(WAVEFORM_TRIANGLE);
+      waveform2.begin(WAVEFORM_TRIANGLE);
+      break;
+    case 2:
+      waveform1.begin(WAVEFORM_SAWTOOTH);
+      waveform2.begin(WAVEFORM_SAWTOOTH);
+      break;
+    case 3:
+      waveform1.begin(WAVEFORM_TRIANGLE);
+      waveform2.begin(WAVEFORM_SAWTOOTH);
+      break;
+    case 4:
+      waveform1.begin(WAVEFORM_SAWTOOTH_REVERSE);
+      waveform2.begin(WAVEFORM_SAWTOOTH_REVERSE);
+      break;
+    case 5:
+      waveform1.begin(WAVEFORM_SQUARE);
+      waveform2.begin(WAVEFORM_SQUARE);
+      break;
+    case 6:
+      waveform1.begin(WAVEFORM_SINE);
+      waveform2.begin(WAVEFORM_SQUARE);
+      break;
+  }
+  if (buttonPushCounter > 6) {
+    buttonPushCounter = 0;
+  }
+  
 }
 
 void oscillatorSetup() {
