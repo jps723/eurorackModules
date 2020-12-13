@@ -1,11 +1,11 @@
 /*
-A melody generator for Teensy3.6 and eurorack. 
+  A melody generator for Teensy3.6 and eurorack.
 
-Choose root note,scale/tempo/probability of playing/waveform 
-combination.  CV input for cycling through the instruments.
+  Choose root note,scale/tempo/probability of playing/waveform
+  combination.  CV input for cycling through the instruments.
 
 */
- 
+
 #include <Audio.h>
 #include "scales.h"
 
@@ -39,7 +39,7 @@ AudioConnection          patchCord8(mixer1, 0, Audio_Output, 1);
 #define NOTE_A4 69         // MIDI note value for middle A
 #define FREQ_A4 440        // frequency for middle A
 
-//a 2D array to store the notes of our scales in. 
+//a 2D array to store the notes of our scales in.
 //There are 7 scales, with 18 notes each
 int rootScaled[7][18] = {};
 
@@ -81,17 +81,15 @@ void setup() {
 
 
 void loop() {
-  //A function for button handling to change the instrument
+  //A function for button/cv handling to change the instrument
   buttonHandler();
   cvHandler();
   //read our input sensors and store them in variables
   int bpmReading = analogRead(A0);
-  int rootReading = analogRead(A1);
-  int scaleReading = analogRead(A2);
+  int scaleReading = analogRead(A1);
+  int rootReading = analogRead(A2);
   int probabilityReading = analogRead(A3);
 
-  //int cvInputReading = analogRead(A14); 
-  
   //result is the BPM we want in 4:4 (quarter notes)
   int masterTempo = map(bpmReading, 0, 1023, 60, 800);
 
@@ -103,7 +101,12 @@ void loop() {
   // convert sensor reading to 21 - 108 range
   // which is the range of MIDI notes on an 88-key keyboard
   // (from A0 to C8):
-  int rootNote = map(rootReading, 0, 1023, 21, 108);
+
+  int rootNote = map(rootReading, 0, 1023, 48, 60);
+  //int rootNote = 60;
+
+  Serial.print("The root note is ");
+  Serial.println(rootNote);
 
 
   //map the scaleReading to the length of the array
@@ -127,7 +130,7 @@ void loop() {
 
   //randomly assign a frequency cutoff for the Low Pass Filter
   int r = random(100);
-  if (r > 50) {
+  if (r > 101) {
     freqCutoff = 7000;
   } else {
     freqCutoff = 2000;
@@ -142,6 +145,8 @@ void loop() {
       arpAdvanceCounter = 0;
     }
     playOsc1(frequency);
+    //Serial.print("The note has a frequency of: ");
+    //Serial.println(frequency);
     playOsc2(frequency);
     waveform1.amplitude(.5);
     waveform2.amplitude(.5);
@@ -234,12 +239,12 @@ void buttonHandler() {
   }
 }
 
-void cvHandler(){
+void cvHandler() {
   // read the pushbutton input pin:
-int cvReadingValue = analogRead(A14);
-  if(cvReadingValue > 350){
-    cvState = true; 
-  }else{
+  int cvReadingValue = analogRead(A14);
+  if (cvReadingValue > 350) {
+    cvState = true;
+  } else {
     cvState = false;
   }
   if (cvState != lastCvState) {
@@ -287,7 +292,7 @@ int cvReadingValue = analogRead(A14);
   if (buttonPushCounter > 6) {
     buttonPushCounter = 0;
   }
-  
+
 }
 
 void oscillatorSetup() {

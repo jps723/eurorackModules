@@ -1,8 +1,8 @@
-/* This is a quad gate generator that uses swing and clock rotation 
- *  to generate 
- */
+/* This is a quad gate generator that uses swing and clock rotation
+    to generate
+*/
 
-//photocell pin is a 
+//photocell pin is a
 int photocellPin = A2;
 int cvReading;
 
@@ -49,29 +49,62 @@ void loop() {
   pot2Reading = map(analogRead(A1), 1023, 0, 1, 15);
 
   cvReading = map(analogRead(A2), 0, 1023, 0, 1000);
-  Serial.println(cvReading);
-
+  //Serial.println(cvReading);
+  int randomNumber = random(100);
+  Serial.println(randomNumber);
   if (cvReading <= 250) {
-    interval0 = 6000 / pot2Reading;
-    interval1 = 12000 / pot2Reading;
-    interval2 = 3000 / pot2Reading;
-    interval3 = 1000 / pot2Reading;
+
+    if (randomNumber > 3) {
+      interval0 = 6000 / pot2Reading;
+      interval1 = 12000 / pot2Reading;
+      interval2 = 3000 / pot2Reading;
+      interval3 = 1000 / pot2Reading;
+    } else {
+      interval0 = 6000 / pot2Reading * 2;
+      interval1 = 12000 / pot2Reading * 2;
+      interval2 = 3000 / pot2Reading * 2;
+      interval3 = 1000 / pot2Reading * 2;
+    }
 
   } else if (cvReading >= 251 && cvReading <= 750) {
-    interval0 = 1000 / pot2Reading;
-    interval1 = 6000 / pot2Reading;
-    interval2 = 12000 / pot2Reading;
-    interval3 = 3000 / pot2Reading;
+    if (randomNumber > 3) {
+      interval0 = 1000 / pot2Reading;
+      interval1 = 6000 / pot2Reading;
+      interval2 = 12000 / pot2Reading;
+      interval3 = 3000 / pot2Reading;
+    } else {
+      interval0 = 1000 / pot2Reading * 2;
+      interval1 = 6000 / pot2Reading * 2;
+      interval2 = 12000 / pot2Reading * 2;
+      interval3 = 3000 / pot2Reading * 2;
+    }
+
   } else if (cvReading >= 751 && cvReading <= 1000) {
-    interval0 = 3000 / pot2Reading;
-    interval1 = 1000 / pot2Reading;
-    interval2 = 6000 / pot2Reading;
-    interval3 = 12000 / pot2Reading;
+    if (randomNumber > 3) {
+      interval0 = 3000 / pot2Reading;
+      interval1 = 1000 / pot2Reading;
+      interval2 = 6000 / pot2Reading;
+      interval3 = 12000 / pot2Reading;
+    } else {
+      interval0 = 3000 / pot2Reading * 2;
+      interval1 = 1000 / pot2Reading * 2;
+      interval2 = 6000 / pot2Reading * 2;
+      interval3 = 12000 / pot2Reading * 2;
+    }
+
   } else {
-    interval0 = 12000 / pot2Reading;
-    interval1 = 3000 / pot2Reading;
-    interval2 = 1000 / pot2Reading;
-    interval3 = 6000 / pot2Reading;
+    if (randomNumber > 3) {
+      interval0 = 12000 / pot2Reading * 2;
+      interval1 = 3000 / pot2Reading * 2;
+      interval2 = 1000 / pot2Reading * 2;
+      interval3 = 6000 / pot2Reading * 2;
+    } else {
+      interval0 = 12000 / pot2Reading * 2;
+      interval1 = 3000 / pot2Reading * 2;
+      interval2 = 1000 / pot2Reading * 2;
+      interval3 = 6000 / pot2Reading * 2;
+    }
+
   }
 
   // Serial.println(pot2Reading);

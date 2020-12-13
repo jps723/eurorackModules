@@ -3,7 +3,7 @@
 //the root note is played at 3:1 ratio across two octaves
 int scales[7][18] = {
   //Ionian (Major) Scale = whole, whole, half, whole, whole, whole, half
-  {0, 0, 0, 2, 4, 5, 7, 9, 11, 12, 12, 12, 14, 16, 17, 19, 21, 23},
+  {0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 23, 23, 23, 23},
 
   // Dorian Scale = whole, half, whole, whole, whole,  half, whole
   {0, 0, 0, 2, 3, 5, 7, 9, 10, 12, 12, 12, 14, 15, 17, 19, 21, 22},
